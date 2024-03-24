@@ -1,0 +1,573 @@
+<html>
+<body>
+<pre>
+<code>
+&#60;!DOCTYPE html&#62;
+&#60;html lang="en"&#62;
+&#60;head&#62;
+  &#60;meta charset="UTF-8"&#62;
+  &#60;meta name="viewport" content="width=device-width, initial-scale=1.0"&#62;
+  &#60;title&#62;pgm1&#60;/title&#62;
+  &#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"&#62;&#60;/script&#62;
+  
+&#60;/head&#62;
+&#60;body ng-app=""&#62;
+  &#60;p&#62;Enter your Firstname:&#60;input type="text" ng-model="firstname"&#62;&#60;/p&#62;
+  &#60;p&#62;Enter your lastname:&#60;input type="text" ng-model="lastname"&#62;&#60;/p&#62;
+  &#60;p&#62;Your Fullname:{{firstname}}   {{lastname}}&#60;/p&#62;
+  
+&#60;/body&#62;
+&#60;/html&#62;
+<p>1 prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+&#60;!DOCTYPE html&#62;
+&#60;html &#62;
+
+&#60;head&#62;
+  &#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"&#62;&#60;/script&#62;
+  &#60;title&#62;pgm2&#60;/title&#62;
+&#60;/head&#62;
+
+&#60;body ng-app="shoppingApp"&#62;
+  &#60;div ng-controller="shoppingController"&#62;
+    &#60;h2&#62;Shopping List&#60;/h2&#62;
+
+    &#60;ul&#62;
+      &#60;li ng-repeat="item in shoppingItems"&#62;
+        {{ item }}
+        &#60;button ng-click="removeItem($index)"&#62;Remove&#60;/button&#62;
+      &#60;/li&#62;
+    &#60;/ul&#62;
+
+    &#60;br&#62;
+
+    &#60;label for="newItem"&#62;Add Item:&#60;/label&#62;
+    &#60;input type="text" ng-model="newItem"&#62;
+    &#60;button ng-click="addItem()"&#62;Add&#60;/button&#62;
+  &#60;/div&#62;
+
+  &#60;script&#62;
+    var app = angular.module('shoppingApp', []);
+
+    app.controller('shoppingController', function ($scope) {
+      $scope.shoppingItems = ['Apples', 'Bananas', 'Milk'];
+
+      $scope.addItem = function () {
+        if ($scope.newItem) {
+          $scope.shoppingItems.push($scope.newItem);
+          $scope.newItem = '';
+        }
+      };
+
+      $scope.removeItem = function (index) {
+        $scope.shoppingItems.splice(index, 1);
+      };
+    });
+  &#60;/script&#62;
+&#60;/body&#62;
+
+&#60;/html&#62;
+<p>2  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+&#60;!DOCTYPE html&#62;
+&#60;html ng-app="Mycalc"&#62;
+
+&#60;head&#62;
+    &#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"&#62;&#60;/script&#62;
+    &#60;meta charset="UTF-8"&#62;
+    &#60;meta name="viewport" content="width=device-width, initial-scale=1.0"&#62;
+    &#60;title&#62;pgm3&#60;/title&#62;
+&#60;/head&#62;
+
+&#60;body  ng-controller="myctrl"&#62;
+    &#60;center&#62;
+    &#60;h2 style="border: 3px solid aqua;"&#62;Simple Calculator..&#60;/h2&#62;
+    Enter First Number:&#60;input type="number" placeholder="First Number" ng-model="num1"&#62;
+    &#60;br&#62;&#60;br&#62;
+    Enter Second Number:&#60;input type="number" placeholder="Second Number" ng-model="num2"&#62;
+    &#60;br&#62;&#60;br&#62;
+
+    Select operation:
+    &#60;select ng-model="op"&#62;
+    &#60;option&#62;Add&#60;/option&#62;
+    &#60;option&#62;Sub&#60;/option&#62;
+    &#60;option&#62;Mul&#60;/option&#62;
+    &#60;option&#62;Div&#60;/option&#62;
+    &#60;/select&#62;
+    &#60;br&#62;&#60;br&#62;
+
+    
+    &#60;p&#62;Result is:{{result}}&#60;/p&#62;
+    &#60;button  style="border-radius: 15px "  ng-click="calc()"&#62;Result&#60;/button&#62;
+    &#60;/center&#62;
+&#60;/body&#62;
+&#60;script&#62;
+    var app = angular.module('Mycalc', []);
+    app.controller('myctrl', function ($scope) {
+
+
+        $scope.calc = function () {
+            var n1 = parseInt($scope.num1);
+            var n2 = parseInt($scope.num2);
+            var op=['Add','Sub','Mul','Div'];
+            switch ($scope.op) {
+                case 'Add': $scope.result = n1 + n2;
+                    break;
+                case 'Sub': $scope.result = n1 - n2;
+                    break;
+                case 'Mul': $scope.result = n1 * n2;
+                    break;
+                case 'Div': $scope.result = n1 / n2;
+                    break;
+                
+                default:alert("Please Select the operation!!....")
+            }
+        };
+
+    });
+&#60;/script&#62;
+
+&#60;/html&#62;
+<p>3  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+
+
+&#60;!DOCTYPE html&#62;
+&#60;html ng-app="myapp"&#62;
+&#60;head&#62;
+    &#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"&#62;&#60;/script&#62;
+    &#60;meta charset="UTF-8"&#62;
+    &#60;meta name="viewport" content="width=device-width, initial-scale=1.0"&#62;
+    &#60;title&#62;pgm4&#60;/title&#62;
+    
+&#60;/head&#62;
+&#60;body ng-controller="myctrl"&#62;
+    &#60;center&#62;
+    &#60;h2&#62;Factorial of Number and Square of the Number&#60;/h2&#62;
+
+    Enter the Number to find its Factorial and Square :&#60;input type="number" ng-model="num" placeholder="Enter the number"&#62;
+    &#60;br&#62;&#60;br&#62;
+
+    &#60;p&#62;Factorial of {{number}} is :{{fact}}&#60;/p&#62;
+    &#60;br&#62;
+    &#60;p&#62;Square of {{number}} is :{{sqr}}&#60;/p&#62;
+     &#60;br&#62;
+    &#60;button ng-click="res()"&#62;Result&#60;/button&#62;
+    &#60;/center&#62;
+&#60;/body&#62;
+&#60;script&#62;
+    var app=angular.module('myapp',[]);
+    app.controller('myctrl',function($scope){
+        $scope.res=function(){
+        var n=$scope.num;
+        var facto=$scope.fact;
+        facto=1;
+
+        for(var i=n;i&#62;=1;i--)
+        {
+            facto=facto*i;
+        }
+
+        $scope.fact=parseInt(facto);
+        $scope.number=n;
+        $scope.sqr=n*n;
+
+
+        };
+    });
+&#60;/script&#62;
+&#60;/html&#62;
+<p>4  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+&#60;!DOCTYPE html&#62;
+&#60;html lang="en"&#62;
+&#60;head&#62;
+&#60;meta charset="UTF-8"&#62;
+&#60;meta name="viewport" content="width=device-width, initial-scale=1.0"&#62;
+&#60;title&#62;pg 5&#60;/title&#62;
+&#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"&#62;&#60;/script&#62;
+&#60;/head&#62;
+&#60;script&#62;
+var app = angular.module("myapp", []);
+app.controller("myctrl", function ($scope) {
+$scope.students = [];
+$scope.count = $scope.students.length;
+$scope.Add = function () {
+$scope.students.push({
+usn: $scope.Stdusn,
+name: $scope.Stdname,
+cgpa: $scope.Stdcgpa
+});
+$scope.count = $scope.students.length;
+clear();
+}
+function clear() {
+$scope.Stdusn = "";
+$scope.Stdname = "";
+$scope.Stdcgpa = "";
+}
+})
+&#60;/script&#62;
+&#60;body ng-app="myapp" ng-controller="myctrl" align="center"&#62;
+&#60;h2&#62;Student Details&#60;/h2&#62;
+&#60;p&#62;Enter Student USN: &#60;input type="text" ng-model="Stdusn"&#62;
+&#60;br&#62;Enter Student Name: &#60;input type="text" ng-model="Stdname"&#62;
+&#60;br&#62;Enter Student CGPA: &#60;input type="text" ng-model="Stdcgpa"&#62;
+&#60;/p&#62;
+&#60;input type="button" value="Add" ng-click="Add()"&#62;
+&#60;p&#62;Total number of students: {{count}}&#60;/p&#62;
+&#60;table align="center" border="1"&#62;
+&#60;tr&#62;
+&#60;th&#62;USN&#60;/th&#62;
+&#60;th&#62;Name&#60;/th&#62;
+&#60;th&#62;CGPA&#60;/th&#62;
+&#60;/tr&#62;
+&#60;tr ng-repeat="x in students"&#62;
+&#60;td&#62;{{x.usn}}&#60;/td&#62;
+&#60;td&#62;{{x.name}}&#60;/td&#62;
+&#60;td&#62;{{x.cgpa}}&#60;/td&#62; 
+&#60;/tr&#62;
+&#60;/table&#62;
+&#60;/body&#62;
+&#60;/html&#62;
+<p>5  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+&#60;!DOCTYPE html&#62;
+&#60;html lang="en"&#62;
+&#60;head&#62;
+ &#60;meta charset="UTF-8"&#62;
+ &#60;meta name="viewport" content="width=device-width, initial-scale=1.0"&#62;
+ &#60;title&#62;pg 6&#60;/title&#62;
+ &#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"&#62;&#60;/script&#62;
+&#60;/head&#62;
+&#60;script&#62;
+ var app = angular.module("myapp", []);
+ app.controller("myctrl", function ($scope) {
+ $scope.list = [];
+ $scope.Add = function () {
+ $scope.list.push($scope.add1);
+ clear();
+ }
+ $scope.Delete = function (x) {
+ $scope.list.splice(x, 1);
+ clear();
+ }
+ $scope.Edit = function (x) {
+ $scope.list[x] = $scope.add2;
+ clear();
+ }
+ function clear() {
+ $scope.add1 = "";
+ $scope.add2 = "";
+ }
+ })
+&#60;/script&#62;
+&#60;body ng-app="myapp" ng-controller="myctrl" align="center"&#62;
+ &#60;h2&#62;To-DO List&#60;/h2&#62;
+ &#60;p&#62;Add new Task&#60;input type="text" ng-model="add1"&#62; &#60;input type="button" value="Add" ngclick="Add()"&#62;
+ &#60;br&#62;&#60;br&#62;Edit a Task &#60;input type="text" ng-model="add2"&#62;
+ &#60;/p&#62;
+ &#60;table align="center" border="1"&#62;
+ &#60;tr&#62;
+ &#60;th&#62;Task&#60;/th&#62;
+ &#60;th&#62;Edit&#60;/th&#62;
+ &#60;th&#62;Delete&#60;/th&#62;
+ &#60;/tr&#62;
+ &#60;tr ng-repeat="x in list"&#62;
+ &#60;td&#62;{{x}}&#60;/td&#62;
+ &#60;td&#62;&#60;input type="button" value="Edit" ng-click="Edit($index)"&#62;&#60;/td&#62;
+ &#60;td&#62;&#60;input type="button" value="Delete" ng-click="Delete($index)"&#62;&#60;/td&#62;
+ &#60;/tr&#62;
+ &#60;/table&#62;
+&#60;/body&#62;
+&#60;/html&#62;
+<p>6  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+&#60;!DOCTYPE html&#62;
+&#60;html lang="en"&#62;
+&#60;head&#62;
+ &#60;meta charset="UTF-8"&#62;
+ &#60;meta name="viewport" content="width=device-width, initial-scale=1.0"&#62;
+ &#60;title&#62;pg 7&#60;/title&#62;
+ &#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"&#62;&#60;/script&#62;
+&#60;/head&#62;
+&#60;script&#62;
+ var app = angular.module("myapp", []);
+ app.controller("myctrl", function ($scope) {
+ $scope.students = [];
+ $scope.Add = function () {
+ $scope.students.push({
+ usn: $scope.Stdusn,
+ name: $scope.Stdname,
+ cgpa: $scope.Stdcgpa
+ });
+ clear();
+ }
+ $scope.Delete = function (x) {
+ $scope.students.splice(x, 1);
+ clear();
+ }
+ $scope.Update = function (x) {
+ if ($scope.val.toLowerCase() == "usn") {
+ $scope.students[x].usn = $scope.add1;
+ }
+ if ($scope.val.toLowerCase() == "name") {
+ $scope.students[x].name = $scope.add1;
+ }
+ if ($scope.val.toLowerCase() == "cgpa") {
+ $scope.students[x].cgpa = $scope.add1;
+ }
+ clear();
+ }
+ function clear() {
+ $scope.Stdusn = "";
+ $scope.Stdname = "";
+ $scope.Stdcgpa = "";
+ $scope.add1 = "";
+ $scope.val = "";
+ }
+ })
+&#60;/script&#62;
+&#60;body ng-app="myapp" ng-controller="myctrl" align="center"&#62;
+ &#60;h2&#62;CRUD application&#60;/h2&#62;
+ &#60;p&#62;Enter Student USN: &#60;input type="text" ng-model="Stdusn"&#62;
+ &#60;br&#62;Enter Student Name: &#60;input type="text" ng-model="Stdname"&#62;
+ &#60;br&#62;Enter Student CGPA: &#60;input type="text" ng-model="Stdcgpa"&#62;
+ &#60;/p&#62;
+ &#60;input type="button" value="Add" ng-click="Add()"&#62;&#60;br&#62;&#60;br&#62;
+ &#60;table align="center" border="1"&#62;
+ &#60;tr&#62;
+ &#60;th&#62;USN&#60;/th&#62;
+ &#60;th&#62;Name&#60;/th&#62;
+ &#60;th&#62;CGPA&#60;/th&#62;
+ &#60;th&#62;Update&#60;/th&#62;
+ &#60;th&#62;Delete&#60;/th&#62;
+ &#60;/tr&#62;
+ &#60;tr ng-repeat="x in students"&#62;
+ &#60;td&#62;{{x.usn}}&#60;/td&#62;
+ &#60;td&#62;{{x.name}}&#60;/td&#62;
+ &#60;td&#62;{{x.cgpa}}&#60;/td&#62;
+ &#60;td&#62;&#60;input type="button" value="Update" ng-click="Update($index)"&#62;&#60;/td&#62;
+ &#60;td&#62;&#60;input type="button" value="Delete" ng-click="Delete($index)"&#62;&#60;/td&#62;
+ &#60;/tr&#62;
+ &#60;/table&#62;
+ &#60;p&#62;Value to Update: &#60;input type="text" ng-model="add1"&#62;&#60;br&#62;
+ Table Name : &#60;input type="text" ng-model="val"&#62;&#60;/p&#62;
+&#60;/body&#62;
+&#60;/html&#62;
+<p>7  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+&#60;!DOCTYPE html&#62;
+&#60;html lang="en" ng-app=""&#62;
+&#60;head&#62;
+ &#60;meta charset="utf-8"&#62;
+ &#60;meta name="viewport" content="width=device-width, initial-scale=1"&#62;
+ &#60;title&#62;pg 8&#60;/title&#62;
+&#60;/head&#62;
+&#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"&#62;&#60;/script&#62;
+&#60;body&#62;
+ &#60;center&#62;
+ &#60;form name="form" action="#"&#62;
+ Enter Your Username:
+ &#60;input type="email" name="email" ng-model="email" required /&#62;
+ &#60;p ng-show="form.email.$error.email"&#62;Not an Email&#60;/p&#62;
+ &#60;br&#62;&#60;br&#62;
+ Enter Your Password:
+ &#60;input type="password" name="password" ng-model="password" ng-minlength="5" ngmaxlength="10" required /&#62;
+ &#60;p ng-show="form.password.$error.minlength"&#62;Too Small&#60;/p&#62;
+ &#60;p ng-show="form.password.$error.maxlength"&#62;Too Long&#60;/p&#62;
+ &#60;input type="submit" value="Submit"&#62;
+ &#60;/form&#62;
+ &#60;/center&#62;
+&#60;/body&#62;
+&#60;/html&#62;
+<p>8  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+&#60;!DOCTYPE html&#62;
+&#60;html&#62;
+&#60;head&#62;
+ &#60;meta charset="utf-8"&#62;
+ &#60;meta name="viewport" content="width=device-width, initial-scale=1"&#62;
+ &#60;title&#62;pg 9&#60;/title&#62;
+ &#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"&#62;&#60;/script&#62;
+&#60;/head&#62;
+&#60;script&#62;
+ var app = angular.module("myapp", []);
+ app.controller("myctrl", function ($scope) {
+ $scope.employee = [];
+ $scope.Add = function () {
+ $scope.employee.push({
+ NAME: $scope.name,
+ SALARY: $scope.sal
+ });
+ clear();
+ };
+ function clear() {
+ $scope.name = "";
+ $scope.sal = "";
+ }
+ $scope.performSearch = function () {
+ console.log("Performing search for: " + $scope.search);
+ };
+ });
+&#60;/script&#62;
+&#60;body ng-app="myapp" ng-controller="myctrl"&#62;
+ &#60;center&#62;
+ &#60;p&#62;Enter the name: &#60;/p&#62;
+ &#60;input type="text" ng-model="name"&#62;&#60;br&#62;
+ &#60;p&#62;Enter Salary: &#60;/p&#62;
+ &#60;input type="text" ng-model="sal"&#62; &#60;br&#62;&#60;br&#62;
+ &#60;input type="button" ng-click="Add()" value="Add"&#62;&#60;br&#62;&#60;br&#62;
+ &#60;table border="2 solid black"&#62;
+ &#60;tr&#62;
+ &#60;td&#62;&#60;input type="text" ng-model="search" placeholder="Search"&#62; &#60;/td&#62;
+ &#60;td&#62;&#60;input type="button" ng-click="performSearch()" value="Search"&#62;&#60;/td&#62;
+ &#60;/tr&#62;
+ &#60;tr&#62;
+ &#60;th&#62;Name&#60;/th&#62;
+ &#60;th&#62;Salary&#60;/th&#62;
+ &#60;/tr&#62;
+ &#60;tr ng-repeat="x in employee | filter:search"&#62;
+ &#60;td&#62;{{ x.NAME }}&#60;/td&#62;
+ &#60;td&#62;{{ x.SALARY }}&#60;/td&#62;
+ &#60;/tr&#62;
+ &#60;/table&#62;
+ &#60;/center&#62;
+&#60;/body&#62;
+&#60;/html&#62;
+<p>9  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+&#60;!DOCTYPE html&#62;
+&#60;html lang="en"&#62;
+&#60;head&#62;
+ &#60;meta charset="UTF-8"&#62;
+ &#60;meta name="viewport" content="width=device-width, initial-scale=1.0"&#62;
+ &#60;title&#62;pg 10&#60;/title&#62;
+ &#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"&#62;&#60;/script&#62;
+&#60;/head&#62;
+&#60;script&#62;
+ var app = angular.module("myapp", []);
+ app.controller("myctrl", function ($scope) {
+ $scope.list = [];
+ $scope.count = $scope.list.length;
+ $scope.Add = function () {
+ $scope.list.push({
+ item: $scope.itemName,
+ price: $scope.itemPrice,
+ pur_date: $scope.date
+ });
+ $scope.count = $scope.list.length;
+ clear();
+ }
+ $scope.Delete = function (x) {
+ $scope.list.splice(x, 1);
+ $scope.count = $scope.list.length;
+ clear();
+ }
+ function clear() {
+ $scope.itemName = "";
+ $scope.itemPrice = "";
+ $scope.date = "";
+ }
+ })
+&#60;/script&#62;
+&#60;body ng-app="myapp" ng-controller="myctrl" align="center"&#62;
+ &#60;h2&#62;List&#60;/h2&#62;
+ &#60;p&#62;Add Item &#60;input type="text" ng-model="itemName"&#62;
+ &#60;br&#62;Add Price &#60;input type="text" ng-model="itemPrice"&#62;
+ &#60;br&#62;Add Purchase Date &#60;input type="text" ng-model="date"&#62; &#60;br&#62;&#60;br&#62;
+ &#60;input type="button" value="Add" ng-click="Add()"&#62;
+ &#60;/p&#62;
+ &#60;p&#62;Total number of Items in List: {{count}}&#60;/p&#62;
+ &#60;table align="center" border="1"&#62;
+ &#60;tr&#62;
+ &#60;th&#62;Item Name&#60;/th&#62;
+ &#60;th&#62;Price&#60;/th&#62;
+ &#60;th&#62;Purchase Date&#60;/th&#62;
+ &#60;th&#62;Delete&#60;/th&#62;
+ &#60;/tr&#62;
+ &#60;tr ng-repeat="x in list"&#62;
+ &#60;td&#62;{{x.item}}&#60;/td&#62;
+ &#60;td&#62;{{x.price}}&#60;/td&#62;
+ &#60;td&#62;{{x.pur_date}}&#60;/td&#62;
+ &#60;td&#62;&#60;input type="button" value="Delete" ng-click="Delete($index)"&#62;&#60;/td&#62;
+ &#60;/tr&#62;
+ &#60;/table&#62;
+&#60;/body&#62;
+&#60;/html&#62;
+<p>10  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+&#60;!DOCTYPE html&#62;
+&#60;html lang="en"&#62;
+&#60;head&#62;
+ &#60;meta charset="UTF-8"&#62;
+ &#60;meta name="viewport" content="width=device-width, initial-scale=1.0"&#62;
+ &#60;title&#62;pg 11&#60;/title&#62;
+ &#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"&#62;&#60;/script&#62;
+&#60;/head&#62;
+&#60;script&#62;
+ var app = angular.module("myapp", []);
+ app.controller("myctrl", function ($scope) {
+ $scope.students = [];
+ $scope.Add = function () {
+ $scope.students.push({
+ usn: $scope.Stdusn,
+ name: $scope.Stdname
+ });
+ clear();
+ }
+ function clear() {
+ $scope.Stdusn = "";
+ $scope.Stdname = "";
+ }
+ })
+&#60;/script&#62;
+&#60;body ng-app="myapp" ng-controller="myctrl" align="center"&#62;
+ &#60;h2&#62;CRUD application&#60;/h2&#62;
+ &#60;p&#62;Enter Student USN: &#60;input type="text" ng-model="Stdusn"&#62;
+ &#60;br&#62;Enter Student Name: &#60;input type="text" ng-model="Stdname"&#62;
+ &#60;/p&#62;
+ &#60;input type="button" value="Add" ng-click="Add()"&#62;&#60;br&#62;&#60;br&#62;
+ &#60;table align="center" border="1"&#62;
+ &#60;tr&#62;
+ &#60;th&#62;USN&#60;/th&#62;
+ &#60;th&#62;Name&#60;/th&#62;
+ &#60;/tr&#62;
+ &#60;tr ng-repeat="x in students"&#62;
+ &#60;td&#62;{{x.usn | uppercase }}&#60;/td&#62;
+ &#60;td&#62;{{x.name | uppercase }}&#60;/td&#62;
+ &#60;/tr&#62;
+ &#60;/table&#62;
+&#60;/body&#62;
+&#60;/html&#62;
+<p>11  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+&#60;!DOCTYPE html&#62;
+&#60;html lang="en"&#62;
+&#60;head&#62;
+ &#60;meta charset="UTF-8"&#62;
+ &#60;meta name="viewport" content="width=device-width, initial-scale=1.0"&#62;
+ &#60;title&#62;pg 12&#60;/title&#62;
+ &#60;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"&#62;&#60;/script&#62;
+&#60;/head&#62;
+&#60;script&#62;
+ var app = angular.module("myapp", []);
+ app.controller("myctrl", function ($scope) {
+ $scope.getDate = function () {
+ $scope.today = new Date();
+ };
+ });
+&#60;/script&#62;
+&#60;body ng-app="myapp" ng-controller="myctrl"&#62;
+ &#60;center&#62;
+ &#60;h4&#62;Today's Date is {{today | date}}&#60;/h4&#62;
+ &#60;input type="button" value="Get Date" ng-click="getDate()"&#62;
+ &#60;/center&#62;
+&#60;/body&#62;
+&#60;/html&#62;<p>12  prg</p><br/>
+<p>-------------------------------------------------------------------------------</p>
+
+</code>
+</pre>
+</body>
+</html>
